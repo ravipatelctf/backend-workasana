@@ -9,6 +9,7 @@ const Task = require("./models/task.models");
 const tagRoutes = require("./routes/tag.routes");
 const projectRoutes = require("./routes/project.routes");
 const teamRoutes = require("./routes/team.routes");
+const taskRoutes = require("./routes/task.routes");
 
 const express = require("express");
 const mongoose = require("mongoose");
@@ -17,6 +18,11 @@ app.use(express.json());
 
 
 initializeDatabase()
+
+
+//----------------------- task routes ----------------------------
+app.use("/tasks", taskRoutes);
+//----------------------------------------------------------------
 
 
 //----------------------- team routes ----------------------------
@@ -37,41 +43,6 @@ const PORT = process.env.PORT;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
