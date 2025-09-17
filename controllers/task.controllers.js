@@ -71,7 +71,7 @@ async function getAllTasks(queryData) {
             queryObj["tags"] = { $in: tagsArray}
         }
 
-        if (queryObj.status) {
+        if (queryData.status) {
             queryObj["status"] = queryData.status;
         }
 

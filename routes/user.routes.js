@@ -88,7 +88,7 @@ router.put("/:userId", async (req, res) => {
 
         res
             .status(200)
-            .json({error: "User updated successfully."});
+            .json({message: "User updated successfully."});
     } catch (error) {
         res
             .status(500)
@@ -110,7 +110,7 @@ router.delete("/:userId", async (req, res) => {
 
         res
             .status(200)
-            .json({error: "User deleted successfully."});
+            .json({message: "User deleted successfully."});
     } catch (error) {
         res
             .status(500)
