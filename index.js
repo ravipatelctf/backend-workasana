@@ -11,7 +11,13 @@ const express = require("express");
 const app = express();
 app.use(express.json());
 
-
+const cors = require("cors");
+const corsOptions = {
+    origin: "*",
+    credentials: true,
+    optionSuccessRate: 200,
+};
+app.use(cors(corsOptions));
 
 //----------------------- user routes ----------------------------
 app.use("/users", userRoutes);
