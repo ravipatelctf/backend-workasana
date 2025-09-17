@@ -8,6 +8,8 @@ It provides RESTful APIs for managing users, tasks, teams, projects, and tags.
 - **MongoDB** with **Mongoose ODM** – Database
 - **dotenv** – Environment variable management
 
+### 🚀 Deployed URL: [Workasana Backend](https://backend-workasana.vercel.app/)
+
 ## 📂 Project Structure
 ```
 
@@ -61,7 +63,7 @@ It provides RESTful APIs for managing users, tasks, teams, projects, and tags.
    Create a `.env` file in the root with:
 
    ```env
-   PORT=5000
+   PORT=3000
    MONGO_URL=<your_mongodb_connection_string>
    ```
 
@@ -74,7 +76,7 @@ It provides RESTful APIs for managing users, tasks, teams, projects, and tags.
    Server will run at:
 
    ```bash
-   http://localhost:5000
+   http://localhost:3000
    ```
 
 5. **Seed Database**( optional ) → To populate the database with sample data, run:
@@ -86,7 +88,8 @@ It provides RESTful APIs for managing users, tasks, teams, projects, and tags.
 
 ## 📌 API References
 
->**baseURL:** `http://localhost:5000`
+>**local baseURL:** `http://localhost:5000`<br>
+>**deployed baseURL:** `https://backend-workasana.vercel.app/`
 
 ## Users
 
