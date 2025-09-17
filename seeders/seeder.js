@@ -69,4 +69,14 @@ async function seedTasksCollection() {
     }
 }
 
-module.exports = {seedTasksCollection, seedTeamsCollection, seedProjectsCollection, seedUsersCollection, seedTagsCollection}
+// -----------------------------------------------------------
+// uncomment the following code for seeding data
+// seedTasksCollection();
+// seedTagsCollection();
+// seedUsersCollection();
+// seedProjectsCollection();
+// seedTeamsCollection();
+// seedTasksCollection();
+// -----------------------------------------------------------
+
+// module.exports = {seedTasksCollection, seedTeamsCollection, seedProjectsCollection, seedUsersCollection, seedTagsCollection}
