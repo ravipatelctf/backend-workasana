@@ -43,6 +43,42 @@ app.use("/projects", projectRoutes);
 app.use("/tags", tagRoutes)
 //----------------------------------------------------------------
 
+
+//----------------------- home routes -----------------------------
+//----------------------- home routes -----------------------------
+app.get("/", (req, res) => {
+    res.status(200).json({
+        message: "Welcome to Workasana API",
+        available_routes: {
+            users: {
+                base: "/users",
+                description: "Manage users (CRUD)",
+            },
+            tasks: {
+                base: "/tasks",
+                description: "Manage tasks (CRUD)",
+            },
+            teams: {
+                base: "/teams",
+                description: "Manage teams (CRUD)",
+            },
+            projects: {
+                base: "/projects",
+                description: "Manage projects (CRUD)",
+            },
+            tags: {
+                base: "/tags",
+                description: "Manage tags (CRUD)",
+            },
+        },
+        status: "API is running ✅"
+    });
+});
+//----------------------------------------------------------------
+
+//----------------------------------------------------------------
+
+
 const PORT = process.env.PORT;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
