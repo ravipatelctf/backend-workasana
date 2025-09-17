@@ -1,4 +1,5 @@
 const {initializeDatabase} = require("./db/db.connect");
+initializeDatabase();
 
 const Tag = require("./models/tag.models");
 const User = require("./models/user.models");
@@ -15,9 +16,6 @@ const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
 app.use(express.json());
-
-
-initializeDatabase()
 
 
 //----------------------- task routes ----------------------------

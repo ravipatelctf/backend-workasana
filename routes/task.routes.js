@@ -42,7 +42,7 @@ router.post("/", async (req, res) => {
 // Read
 router.get("/", async (req, res) => {
     try {
-        const allTasks = await getAllTasks();
+        const allTasks = await getAllTasks(req.query);
         if (!allTasks) {
             return res
                 .status(404)
