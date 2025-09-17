@@ -11,11 +11,18 @@ const tagRoutes = require("./routes/tag.routes");
 const projectRoutes = require("./routes/project.routes");
 const teamRoutes = require("./routes/team.routes");
 const taskRoutes = require("./routes/task.routes");
+const userRoutes = require("./routes/user.routes");
 
 const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
 app.use(express.json());
+
+
+
+//----------------------- user routes ----------------------------
+app.use("/users", userRoutes);
+//----------------------------------------------------------------
 
 
 //----------------------- task routes ----------------------------
