@@ -1,12 +1,6 @@
 const {initializeDatabase} = require("./db/db.connect");
 initializeDatabase();
 
-const tagRoutes = require("./routes/tag.routes");
-const projectRoutes = require("./routes/project.routes");
-const teamRoutes = require("./routes/team.routes");
-const taskRoutes = require("./routes/task.routes");
-const userRoutes = require("./routes/user.routes");
-
 const express = require("express");
 const app = express();
 app.use(express.json());
@@ -19,32 +13,44 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
+const tagRoutes = require("./routes/tag.routes");
+const projectRoutes = require("./routes/project.routes");
+const teamRoutes = require("./routes/team.routes");
+const taskRoutes = require("./routes/task.routes");
+const userRoutes = require("./routes/user.routes");
+const {router: authRoutes, verifyJWT} = require("./routes/auth.routes");
+
+
+//----------------------- auth routes ----------------------------
+app.use("/auth", authRoutes);
+//----------------------------------------------------------------
+
+
 //----------------------- user routes ----------------------------
-app.use("/users", userRoutes);
+app.use("/users", verifyJWT, userRoutes);
 //----------------------------------------------------------------
 
 
 //----------------------- task routes ----------------------------
-app.use("/tasks", taskRoutes);
+app.use("/tasks", verifyJWT, taskRoutes);
 //----------------------------------------------------------------
 
 
 //----------------------- team routes ----------------------------
-app.use("/teams", teamRoutes);
+app.use("/teams", verifyJWT, teamRoutes);
 //----------------------------------------------------------------
 
 
 //----------------------- project routes -------------------------
-app.use("/projects", projectRoutes);
+app.use("/projects", verifyJWT, projectRoutes);
 //----------------------------------------------------------------
 
 
 //----------------------- tag routes -----------------------------
-app.use("/tags", tagRoutes)
+app.use("/tags", verifyJWT, tagRoutes)
 //----------------------------------------------------------------
 
 
-//----------------------- home routes -----------------------------
 //----------------------- home routes -----------------------------
 app.get("/", (req, res) => {
     res.status(200).json({
