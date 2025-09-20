@@ -16,7 +16,6 @@ const taskSchema = new mongoose.Schema({
     teamMembers: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
-        required: true
     }],
     tags: [{
         type: mongoose.Schema.Types.ObjectId,
