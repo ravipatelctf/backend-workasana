@@ -13,21 +13,18 @@ const taskSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "Team"
     },
-    teamMembers: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-    }],
     tags: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Tag",
     }],
-    timeToComplete: {
-        type: Number,
+    dueDate: {
+        type: Date,
         required: true
     },
     status: {
         type: String,
-        enum: ['To Do', 'In Progress', 'Completed', 'Blocked']
+        enum: ['To Do', 'In Progress', 'Completed', 'Blocked'],
+        default: "To Do"
     }
 },
 {

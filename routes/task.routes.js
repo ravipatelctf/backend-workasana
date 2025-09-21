@@ -10,7 +10,8 @@ router.use(express.json());
 
 // Create
 router.post("/", async (req, res) => {
-    const {name, project, team, teamMembers, tags, timeToComplete, status} = req.body;
+    const {name, project, team, tags, dueDate, status} = req.body;
+
     if (!mongoose.Types.ObjectId.isValid(project)) {
         return res.status(400).json({error: `${project} is not a valid ObjectId.`});
     }
@@ -19,13 +20,8 @@ router.post("/", async (req, res) => {
         return res.status(400).json({error: `${team} is not a valid ObjectId.`});
     }
 
-    teamMembers.forEach(memberId => {
-        if (!mongoose.Types.ObjectId.isValid(memberId)) {
-            return res.status(400).json({error: `${memberId} is not a valid ObjectId.`});
-        } 
-    });
     try {
-        const newTask = await createTask({name, project, team, teamMembers, tags, timeToComplete, status});
+        const newTask = await createTask({name, project, team, tags, dueDate, status});
         
         if (newTask) {
             res
@@ -62,7 +58,7 @@ router.get("/", async (req, res) => {
 // Update
 router.put("/:taskId", async (req, res) => {
     const {taskId} = req.params;
-    const {name, project, team, teamMembers, tags, timeToComplete, status} = req.body;
+    const {name, project, team, tags, dueDate, status} = req.body;
     
     if (!mongoose.Types.ObjectId.isValid(taskId)) {
         return res.status(400).json({error: `${taskId} is not a valid ObjectId.`});
@@ -76,13 +72,8 @@ router.put("/:taskId", async (req, res) => {
         return res.status(400).json({error: `${team} is not a valid ObjectId.`});
     }
 
-    teamMembers.forEach(memberId => {
-        if (!mongoose.Types.ObjectId.isValid(memberId)) {
-            return res.status(400).json({error: `${memberId} is not a valid ObjectId.`});
-        } 
-    });
     try {
-        const updatedTask = await updateTaskById(taskId, {name, project, team, teamMembers, tags, timeToComplete, status});
+        const updatedTask = await updateTaskById(taskId, {name, project, team, tags, dueDate, status});
         if (!updatedTask) {
             return res
                 .status(404)

@@ -4,12 +4,16 @@ const Project = require("../models/project.models");
 const Team = require("../models/team.models");
 const Task = require("../models/task.models");
 
+const tagsArray = ["High Priority", "Medium Priority", "Low Priority", "Bug", "Feature", "Improvement", "Documentation", "Design", "Testing", "Research", "Frontend", "Backend", "Database", "UI/UX", "DevOps", "Marketing", "Sales", "HR", "Overdue", "Recurring", "Client Work", "Internal", "Training", "Meeting", "Release"];
+
 async function seedTagsCollection() {
     try {
-        const newTag = new Tag({
-            name: "bug"
-        });
-        await newTag.save();
+        for (const tag of tagsArray) {
+            const newTag = new Tag({
+                name: tag
+            });
+            await newTag.save();
+        }
     } catch (error) {
         throw error;
     }

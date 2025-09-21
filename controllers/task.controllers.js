@@ -2,7 +2,6 @@ const Project = require("../models/project.models");
 const Tag = require("../models/tag.models");
 const Task = require("../models/task.models");
 const Team = require("../models/team.models");
-const User = require("../models/user.models");
 
 
 // -------------------- task controllers -------------------
@@ -20,7 +19,6 @@ async function createTask(newTaskData) {
 
 // Read
 async function getAllTasks(queryData) {
-    console.log("queryData:", queryData);
     const queryObj = {};
 
     try {
@@ -42,20 +40,6 @@ async function getAllTasks(queryData) {
             }
         }
 
-        if (queryData.teamMembers) {
-            const teamMembersArray = []
-            if (Array.isArray(queryData.teamMembers)) {
-                for (const teamMember of queryData.teamMembers) {
-                    const teamMemberObj = await User.findOne({name: teamMember});
-                    teamMembersArray.push((teamMemberObj._id));
-                }
-            } else {
-                const teamMemberObj = await User.findOne({name: queryData.teamMembers});
-                teamMembersArray.push((teamMemberObj._id));
-            }
-            queryObj["teamMembers"] = { $in: teamMembersArray }
-        } 
-
         if (queryData.tags) {
             
             const tagsArray = []
@@ -71,13 +55,14 @@ async function getAllTasks(queryData) {
             queryObj["tags"] = { $in: tagsArray}
         }
 
+        if (queryData.dueDate) {
+            queryObj["dueDate"] = queryData.dueDate;
+        }
+
         if (queryData.status) {
             queryObj["status"] = queryData.status;
         }
-
-        console.log("queryObj:", queryObj);
-        const allTasks = await Task.find(queryObj);
-        console.log(allTasks)
+        const allTasks = await Task.find(queryObj).populate(["project", "team", "tags"]);
         return allTasks;
     } catch (error) {
         throw error;
