@@ -6,7 +6,7 @@ const express = require("express");
 const router = express.Router();
 router.use(express.json());
 
-//----------------------- tag routes -----------------------------
+//----------------------- project routes -----------------------------
 
 // Create
 router.post("/", async (req, res) => {

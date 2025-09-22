@@ -10,9 +10,9 @@ router.use(express.json());
 
 // Create
 router.post("/", async (req, res) => {
-    const {name, description} = req.body;
+    const {name, description, teamMembers} = req.body;
     try {
-        const newTeam = await createTeam(name, description);
+        const newTeam = await createTeam(name, description, teamMembers);
         if (!newTeam) {
             return res
                 .status(400)

@@ -3,9 +3,9 @@ const Team = require("../models/team.models");
 // ------------------ team controllers -------------------
 
 // Create
-async function createTeam(name, description) {
+async function createTeam(name, description, teamMembers) {
     try {
-        const newTeam = new Team({name, description});
+        const newTeam = new Team({name, description, teamMembers});
         const savedTeam = await newTeam.save();
         return savedTeam;
     } catch (error) {
@@ -16,7 +16,7 @@ async function createTeam(name, description) {
 // Read
 async function getAllTeams() {
     try {
-        const allTeams = await Team.find();
+        const allTeams = await Team.find().populate("teamMembers");
         return allTeams;
     } catch (error) {
         throw error;

@@ -8,7 +8,11 @@ const teamSchema = new mongoose.Schema({
     },
     description: {
         type: String
-    }
+    },
+    teamMembers: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+    }]
 },
 {
     timestamps: true
