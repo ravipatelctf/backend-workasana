@@ -43,7 +43,7 @@ const verifyJWT = (req, res, next) => {
     if (!authHeader) {
         return res.status(401).json({message: "No token provided."});
     }
-
+    // authHeader from frontend `Bearer ${token}`, so the following line of code is used to extract the token
     const token = authHeader.split(" ")[1];
 
     try {
